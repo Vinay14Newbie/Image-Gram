@@ -1,0 +1,6 @@
+npm init -y
+npm i express
+
+
+HTML forms only allows you to make "GET" and "POST" request, so use Javascript.
+Using your browser url you are only able to make "GET" request.
