@@ -1,0 +1,19 @@
+what is an ORM, what is an ODM
+
+Object-Relational Mapping (ORM) is a technique that lets you query and manipulate data from a database using an object-oriented paradigm. When talking about ORM, most people are referring to a library that implements the Object-Relational Mapping technique, hence the phrase "an ORM".
+
+And then with an ODM, it's basically doing the same thing, except for document databases. It's mapping from the objects in your application code to the documents in the database. Mongoose is a good example of an ODM. It works with MongoDB.
+
+Essencially, an ORM use a SQL database Driver like ODBC, JDBC or OLEDB to translate the object notation to relational notation and an ODM use a JSON or JSONB api to translate the Object notation to Document notation.
+
+There are different kind of implementations under the hood.
+
+PS: JSONB is a JSON text document notation stored in a binary format as used by MongoDB.
+
+Mongoose is a good example for ODM(Object Data Model) for MongoDB in which you can directly perform operations with objects and that gets translated into the appropriate query and schema. It can be found Here at https://mongoosejs.com/
+
+
+
+Mongoose is an example for ODM which maps between object models and MongoDB. Mongoose provides a lot of functions for querying and editing documents in a collection on the model class, as well as a rich query class to make manual queries.
+
+Sequelize is a modern example for ORM which maps between object models and an SQL DB. Sequelize works with many Relational Databases such as Postgres, MariaDB, SQLite, MySQL, Oracle and SQL Server. Sequelize has a very similar interface to Mongoose, where you start by defining tables (instead of collections) as models in TypeScript.
