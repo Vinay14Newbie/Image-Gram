@@ -4,3 +4,9 @@ npm i express
 
 HTML forms only allows you to make "GET" and "POST" request, so use Javascript.
 Using your browser url you are only able to make "GET" request.
+
+
+
+---
+In schema/user.js 
+schema is essential for relational databases. It's okay to not use schema for document databases but it's good practice to keep a schema.
