@@ -1,6 +1,7 @@
 What is Schema In Mongoose?
 
-In Mongoose, a schema serves as a foundational blueprint defining the structure of documents within MongoDB collections. Essentially, it outlines the shape and organization of data, specifying fields along with their types, validation rules, and default values. This structured approach not only ensures consistency in data format but also facilitates efficient querying and manipulation of data within Node.js applications.
+---In Mongoose, a schema serves as a foundational blueprint defining the structure of documents within MongoDB collections. 
+Essentially, it outlines the shape and organization of data, specifying fields along with their types, validation rules, and default values. This structured approach not only ensures consistency in data format but also facilitates efficient querying and manipulation of data within Node.js applications.
 
 Beyond defining the structure, Mongoose schemas support additional features such as methods, statics, and middleware hooks, enabling developers to encapsulate business logic and streamline database operations. By providing a schema-based modeling framework, Mongoose bridges the gap between MongoDB’s schema-less nature and the structured requirements of application development, empowering developers to design robust, scalable, and maintainable data schemas tailored to their specific application needs. Understanding schemas in Mongoose is fundamental for harnessing its full potential in building modern, data-driven Node.js applications.
 
