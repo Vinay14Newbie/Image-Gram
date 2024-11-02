@@ -1,0 +1,14 @@
+Middleware for handling file uploads in Express
+
+Multer is a popular middleware for handling file uploads in Node.js and Express applications. It simplifies the process of receiving files from a client (like an image upload from a form) and storing them either temporarily or permanently. When working with AWS S3 or Cloudinary, Multer helps by allowing you to handle the initial upload from the client, and then you can transfer the file to cloud storage.
+
+
+
+
+multer S3
+
+Multer-S3 is a specialized library that combines Multer (middleware for handling file uploads in Express) with the AWS SDK for S3, allowing you to upload files directly to Amazon S3 from your Express server. This approach bypasses the need to store files locally, streaming them directly to S3, which improves efficiency and reduces server storage usage.
+
+-Multer-S3 simplifies file uploads directly to S3 from an Express app.
+-It integrates AWS S3 with Multer to avoid saving files on the server, ideal for media-heavy applications.
+-Configuration options allow custom paths, filenames, and access levels for each file.

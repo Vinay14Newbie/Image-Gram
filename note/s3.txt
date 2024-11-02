@@ -1,0 +1,5 @@
+first install sdk 
+
+npm i aws-sdk
+
+**Then, use multer for handling file uploads
