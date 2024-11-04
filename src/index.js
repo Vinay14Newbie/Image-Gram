@@ -1,6 +1,7 @@
 import express from 'express' //express is a function
 import connectDB from './dbConfig.js';
 import {createPost} from './controllers/postController.js';
+import { s3uploader } from './multerConfig.js';
 
 const PORT = 3000;
 
@@ -24,7 +25,7 @@ app.get('/ping', /*express.json()*/ (req, res)=>{
 })
 
 
-app.post('/post', createPost);
+app.post('/post', s3uploader.single('image'), createPost);
 
 app.listen(PORT, ()=>{
     console.log(`Server is running on port ${PORT}`);

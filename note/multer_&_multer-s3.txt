@@ -12,3 +12,6 @@ Multer-S3 is a specialized library that combines Multer (middleware for handling
 -Multer-S3 simplifies file uploads directly to S3 from an Express app.
 -It integrates AWS S3 with Multer to avoid saving files on the server, ideal for media-heavy applications.
 -Configuration options allow custom paths, filenames, and access levels for each file.
+
+
+Use  "multer-s3": "^2.10.0"   version of multer-s3
