@@ -1,0 +1,53 @@
+Middlewares are perfect for validating requests and making changes before the request reaches the final route handler. They allow you to inspect, modify, and even reject requests based on conditions you set.
+
+Key Uses of Middleware for Validation and Modification
+
+
+1) Request Validation:
+
+You can use middleware to check if the incoming request contains required fields, valid data types, or meets specific criteria.
+For example, you might validate that a request to create a user contains a valid email and a strong password.
+
+
+2) Data Sanitization and Transformation:
+
+Middleware can modify request data, sanitize inputs, and ensure that it’s safe and consistent before it reaches your business logic.
+For instance, you might trim whitespace from input fields, convert text to lowercase, or escape characters to prevent injection attacks.
+
+
+3) Setting Default Values:
+
+Middleware can add default values for missing fields in requests.
+For example, if a request is missing an optional field like status, you can set it to pending by default.
+
+
+Ex..
+
+function m1(req, res, next){
+    console.log("m1");
+    next();
+}
+
+function m2(req, res, next){
+    console.log("m2");
+    next();
+}
+
+function m3(req, res, next){
+    console.log("m3");
+    next();
+}
+
+app.post('/post', [m1, m2, m3], createPost);
+
+
+
+
+---Another example
+This is how we can impose global middleware locally
+
+function m1(req, res, next){
+    console.log("m1");
+    next();
+}
+app.use(m1);  //sets m1 as a global middleware in Express. This means m1 will be executed for every incoming request, regardless of the route or HTTP method.
