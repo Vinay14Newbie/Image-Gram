@@ -1,0 +1,36 @@
+Express.Router
+
+Use the express.Router class to create modular, mountable route handlers. A Router instance is a complete middleware and routing system; for this reason, it is often referred to as a “mini-app”.
+
+
+
+
+Step-by-Step Explanation
+
+1) Import Required Modules:
+
+express: Used to create the router instance.
+s3uploader: Middleware for handling image uploads to AWS S3.
+createPost and findAllPosts: Controller functions to handle the logic for creating and retrieving posts.
+
+2) Create a Router Instance:
+
+const router = express.Router(); creates a new router instance. This router object will act like a mini Express app that can hold multiple routes.
+The router allows you to keep routes modular and organized by functionality, e.g., all "post" related routes in one file.
+
+3) Define Routes:
+
+router.post('/posts', s3uploader.single('image'), createPost);:
+
+This route handles creating a new post.
+It uses s3uploader.single('image') as middleware to upload an image to AWS S3.
+After the image is uploaded, the createPost controller is called to handle creating the post.
+
+router.get('/posts', findAllPosts);:
+
+This route handles retrieving all posts.
+It calls findAllPosts, which retrieves all posts from the database and sends them as the response.
+
+4)Export the Router:
+
+export default router; makes this router available to be imported and used in other files, like your main index.js file, where you’ll attach it to a specific path (e.g., /api or /api/v1).
