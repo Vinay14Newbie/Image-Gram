@@ -7,6 +7,6 @@ export const s3 = new AWS.S3({
     secretAccessKey: AWS_SECRET_ACCESS_KEY
 })
 
-console.log(AWS_REGION);
-console.log(AWS_ACCESS_KEY);
-console.log(AWS_SECRET_ACCESS_KEY);
+// console.log(AWS_REGION);
+// console.log(AWS_ACCESS_KEY);
+// console.log(AWS_SECRET_ACCESS_KEY);

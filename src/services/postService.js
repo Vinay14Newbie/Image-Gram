@@ -3,7 +3,7 @@
 // 3. Create a post with the caption and the image url in the 'database' using repository
 // 4. Return the post object
 
-import { createPost, findAllPosts, countAllPosts } from "../repositories/postRepository.js";
+import { createPost, findAllPosts, countAllPosts, deletePostByid, updatePostByid } from "../repositories/postRepository.js";
 
 export const createPostService = async (createPostObject) => {
     const caption = createPostObject.caption?.trim();
@@ -27,4 +27,16 @@ export const getAllPostService = async (offset, limit) => {
     return{
         posts, totalPages ,totalDocuments
     }
+}
+
+
+export const deletePostByidService = async (id) => {
+    const response = await deletePostByid(id);
+    return response;
+}
+
+
+export const updatePostByidService = async (id, updateObject) => {
+    const response = await updatePostByid(id, updateObject);
+    return response;
 }

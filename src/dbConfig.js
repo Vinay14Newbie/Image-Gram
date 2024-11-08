@@ -10,4 +10,4 @@ export default async function connectDB() {
         console.log("Something went wrong: "+error);
     }
 }
-console.log(DB_URL);
+// console.log(DB_URL);

@@ -42,3 +42,25 @@ export const findPostById = async (id) => {
         console.log(error);
     }
 }
+
+export const deletePostByid = async (id) => {
+    try {
+        const post = await Post.findByIdAndDelete(id);
+        
+        return post;
+    } catch (error) {
+        console.log("failed to delete the document: "+error);
+    }
+}
+
+export const updatePostByid = async (id, updateObject) => {
+    try {
+        const post = await Post.findByIdAndUpdate(id, updateObject, {new: true});
+        // By default mongoose returnes the old documents
+        // {new: true} this object stops the mongoose to return old document & returns the new document 
+
+        return post;
+    } catch (error) {
+        console.log("failed to update the post: "+error);
+    }
+}
