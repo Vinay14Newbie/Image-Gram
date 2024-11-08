@@ -1,4 +1,6 @@
 import Post from "../schema/post.js";
+import { AWS_BUCKET_NAME } from "../serverConfig.js";
+import { s3 } from "../awsConfig.js"
 
 
 export const createPost = async (caption, image, user) => {
@@ -55,6 +57,29 @@ export const deletePostByid = async (id) => {
 
 export const updatePostByid = async (id, updateObject) => {
     try {
+        // first delete the old image (if updating) from aws s3
+
+        const oldPost = await Post.findById(id);
+
+        if(!oldPost){
+            console.log('post not found');
+            return null;
+        }
+
+        if(updateObject.image && oldPost.image){
+            const oldImageKey = oldPost.image.split('/').pop();  // Assuming the URL follows S3 standard format, this will get the file key (filename)
+
+            
+            const params = {
+                Bucket: AWS_BUCKET_NAME,
+                Key: oldImageKey
+            };
+            await s3.deleteObject(params).promise();
+            
+            console.log("old image deleted successfully");
+        }        
+
+
         const post = await Post.findByIdAndUpdate(id, updateObject, {new: true});
         // By default mongoose returnes the old documents
         // {new: true} this object stops the mongoose to return old document & returns the new document 
