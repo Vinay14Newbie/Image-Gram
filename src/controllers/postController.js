@@ -3,6 +3,13 @@ import { createPostService, deletePostByidService, getAllPostService, updatePost
 export async function createPost(req, res) {
     // call the service layer function
     console.log(req.file);
+
+    if(!req.file || !req.file.location){
+        return res.status(400).json({
+            success: false,
+            message: "image is required"
+        })
+    }
     
     const post = await createPostService({
         caption: req.body.caption,
@@ -18,7 +25,8 @@ export async function createPost(req, res) {
 
 
 // /api/v1/posts?limit=10&offset=0
-export async function getAllPosts(req, res) {
+export async function getAllPosts(req, res) {  // the req (request) object contains information about the HTTP request made to the server.
+    
     try {
         const limit = req.query.limit || 5;        
         const offset = req.query.offset || 0;

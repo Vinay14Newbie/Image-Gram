@@ -1,11 +1,12 @@
 import express from 'express' //express is a function
 import connectDB from './dbConfig.js';
 // import postRouter from './routers/v1/post.js';  //In JS (and specifically in ES6 modules), you can import a default export with any name you like.
-import apiRouter from './routers/apiRouter.js'
+import apiRouter from './routers/apiRouter.js';
 
 const PORT = 3000;
 
 const app = express();  // create express app server instance
+
 
 // exporess.json() is a middleware which parse the json
 // use() helps us to add middleware to every single requests 

@@ -69,6 +69,7 @@ export const updatePostByid = async (id, updateObject) => {
         if(updateObject.image && oldPost.image){
             const oldImageKey = oldPost.image.split('/').pop();  // Assuming the URL follows S3 standard format, this will get the file key (filename)
 
+            // console.log(oldImageKey);   //e.g.  image-1731067290181-380874790.webp
             
             const params = {
                 Bucket: AWS_BUCKET_NAME,
