@@ -1,0 +1,7 @@
+To hash a password, we want to modify the incoming user object just before we store it in the DB.
+1st way) Service layer
+2nd way) Trigger, just before user creation in db, and modify our password in this trigger
+
+
++++ bcrypt library
+bcrypt is library to hash the data
