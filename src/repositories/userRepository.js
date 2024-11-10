@@ -18,6 +18,8 @@ export const createUser = async (user) => {
 
 export const findUserByEmail = async (email) => {
     try {
+        console.log("repository layer", email);
+        
         const user = await User.findOne({email});
         return user;       
     } 

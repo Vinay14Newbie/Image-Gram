@@ -1,4 +1,4 @@
-import { countUsersService, createUserService, findAllUsersService } from "../services/userService.js"
+import { countUsersService, createUserService, findAllUsersService, signInUserService } from "../services/userService.js"
 
 export async function createUser(req, res){
     console.log("req body ", req.body);
@@ -76,4 +76,32 @@ export async function findAllUsers(req, res) {
             message: "something went wrong while fetching users"
         })
     }    
+}
+
+
+export async function signIn(req, res) {
+    console.log("Controller layer");
+    
+    try {
+        console.log("controller layer request body", req.body);
+        
+        const respone = await signInUserService(req.body);
+        return  res.status(200).json({
+            success: true,
+            message: "user signed in successfully",
+            data: respone
+        })
+    } catch (error) {
+        if(error.status){
+            return res.status(error.status).json({
+                success: false,
+                message: error.message
+            })
+        }
+
+        return res.status(500).json({
+            success: false,
+            message: "Internal server error"
+        })     
+    }
 }

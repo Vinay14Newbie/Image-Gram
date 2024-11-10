@@ -1,4 +1,7 @@
 import { countAllUsers, createUser, findAllUsers, findUserByEmail } from "../repositories/userRepository.js";
+import bcrypt from 'bcrypt';
+import { generateJwtToken } from "../utils/jwt.js";
+
 
 export const createUserService = async (createUserObject) => {
     // const username = createUserObject.username;
@@ -33,4 +36,38 @@ export const countUsersService = async () => {
 export const findAllUsersService = async () => {
     const users = await findAllUsers();
     return users;
+}
+
+export const signInUserService = async(userDetails) => {
+    try {
+        // 1. check if there is a valid registered with the email
+        console.log('userDetails in Service layer: ', userDetails);
+        
+        const user = await findUserByEmail(userDetails.email);
+        if(!user){
+            throw{ 
+                status: 404,  // 404- not found
+                message: "User not found"
+            }
+        }
+
+        // 2. compare the password
+        const isPasswordValid = bcrypt.compareSync(userDetails.password, user.password);
+        
+        if(!isPasswordValid){
+            throw{
+                status: 401,  // 401- unauthorized
+                message: "Invalid password"
+            }
+        }
+
+        const token = generateJwtToken({email: user.email, _id: user._id, username: user.username});
+
+        console.log("service layer, jwt token: ", token);
+        
+        return token;
+
+    } catch (error) {
+        throw error;
+    }
 }
