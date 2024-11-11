@@ -75,3 +75,18 @@ export const signInUserService = async(userDetails) => {
         throw error;
     }
 }
+
+export const checkIfUserExistService = async(email) => {
+    try {
+        const user = await findUserByEmail(email);
+        if(!user){
+            throw{ 
+                status: 404,  // 404- not found
+                message: "User not found"
+            }
+        }
+        return user;
+    } catch (error) {
+        throw error;
+    }
+}
