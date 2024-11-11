@@ -42,8 +42,10 @@ export const signInUserService = async(userDetails) => {
     try {
         // 1. check if there is a valid registered with the email
         console.log('userDetails in Service layer: ', userDetails);
+        const email = userDetails.email;
+        const palinPass = userDetails.password;
         
-        const user = await findUserByEmail(userDetails.email);
+        const user = await findUserByEmail(email);
         if(!user){
             throw{ 
                 status: 404,  // 404- not found
@@ -60,7 +62,7 @@ export const signInUserService = async(userDetails) => {
                 message: "Invalid password"
             }
         }
-
+        
         const token = generateJwtToken({email: user.email, _id: user._id, username: user.username});
 
         console.log("service layer, jwt token: ", token);
@@ -68,6 +70,8 @@ export const signInUserService = async(userDetails) => {
         return token;
 
     } catch (error) {
+        console.log("found error in service layer");
+        
         throw error;
     }
 }
