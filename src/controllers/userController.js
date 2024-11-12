@@ -1,6 +1,6 @@
-import { countUsersService, createUserService, findAllUsersService, signInUserService } from "../services/userService.js"
+import { signUpService, createUserService, findAllUsersService, signInUserService } from "../services/userService.js"
 
-export async function createUser(req, res){
+export async function signUp(req, res){
     console.log("req body ", req.body);
 
     try {
@@ -13,7 +13,7 @@ export async function createUser(req, res){
 
         const user = await createUserService(req.body);   
 
-        const count = await  countUsersService();
+        const count = await  signUpService();
 
         console.log(user);
         

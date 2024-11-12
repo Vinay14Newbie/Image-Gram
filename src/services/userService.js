@@ -3,7 +3,7 @@ import bcrypt from 'bcrypt';
 import { generateJwtToken } from "../utils/jwt.js";
 
 
-export const createUserService = async (createUserObject) => {
+export const signUpService = async (createUserObject) => {
     // const username = createUserObject.username;
     // const email = createUserObject.email;
     // const password = createUserObject.password;

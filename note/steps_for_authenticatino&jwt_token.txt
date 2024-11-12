@@ -1,0 +1,32 @@
+Steps for User Authentication and JWT Issuance
+
+1) User Sends Credentials to the Server:
+
+The user sends a request to the sign-in endpoint with their email and password in the request body.
+
+
+2) Server Verifies the Credentials:
+
+The server checks if the provided email exists in the database.
+If the email exists, it compares the provided password with the hashed password stored in the database using bcrypt.compare.
+
+
+3) Server Generates a JWT Token:
+
+Upon successful password verification, the server generates a JWT token containing user-specific information (e.g., userId, email, role).
+The token is signed with a secret key to ensure its authenticity.
+
+
+4) Server Sends the JWT Token to the Client:
+
+The server sends the generated token back to the user as part of the response (e.g., in the Authorization header or JSON response body).
+
+
+5) Client Stores the JWT Token:
+
+The client stores the JWT token (e.g., in local storage, session storage, or cookies) for use in future requests to access protected resources.
+
+
+6) Client Uses the JWT for Authorization:
+
+For subsequent requests to protected routes, the client includes the JWT token in the Authorization header.
