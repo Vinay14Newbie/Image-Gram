@@ -1,19 +1,19 @@
-import { signUpService, createUserService, findAllUsersService, signInUserService } from "../services/userService.js"
+import { countUsersService, signUpService, findAllUsersService, signInUserService } from "../services/userService.js"
 
 export async function signUp(req, res){
     console.log("req body ", req.body);
 
     try {
-        // const user = await createUserService({
+        // const user = await signUpService({
         //         username: req.body.username, 
         //         email: req.body.email, 
         //         password: req.body.password
         //     });
         // OR
 
-        const user = await createUserService(req.body);   
+        const user = await signUpService(req.body);   
 
-        const count = await  signUpService();
+        const count = await  countUsersService();
 
         console.log(user);
         
