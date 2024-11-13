@@ -51,8 +51,8 @@ export async function getAllPosts(req, res) {  // the req (request) object conta
 
 export async function deletePostByid(req, res) {
     try {
-        const id = req.params.id
-        const response = await deletePostByidService(id);
+        const postId = req.params.id
+        const response = await deletePostByidService(postId, req.user._id);
 
         if(!response){
             return res.status(404).json({
@@ -68,6 +68,12 @@ export async function deletePostByid(req, res) {
         })
     } catch (error) {
         console.log("Error found while deleting");
+        if(error.status){
+            return res.status(error.status).json({
+                success: false,
+                message: error.message
+            })
+        }
         return res.status(500).json({
             status: false,
             message: "Internal error"

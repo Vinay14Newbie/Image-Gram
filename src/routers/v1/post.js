@@ -15,7 +15,7 @@ router.post('/', isAuthenticated, s3uploader.single('image'), validate(zodPostSc
 
 router.get('/', getAllPosts)
 
-router.delete('/:id', deletePostByid);  // Express will treat anything after /posts/ as the id parameter. It’s intended to be part of the URL path, not a query string.
+router.delete('/:id', isAuthenticated, deletePostByid);  // Express will treat anything after /posts/ as the id parameter. It’s intended to be part of the URL path, not a query string.
 
 router.put('/:id', s3uploader.single('image'), updatePost)
 

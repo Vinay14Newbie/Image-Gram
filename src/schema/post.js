@@ -12,10 +12,10 @@ const postSchema = new mongoose.Schema({
     },
     user: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "User"
+        ref: "User"  // The ref option is what tells Mongoose which model to use during population
     }
 }, {timestamps: true});
 
-const Post = mongoose.model("Post", postSchema);   //it'll create a post collection in mongodb
+const Post = mongoose.model("Post", postSchema);   //it'll create a 'posts' collection in mongodb
 
 export default Post;

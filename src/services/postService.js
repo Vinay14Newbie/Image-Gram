@@ -3,7 +3,7 @@
 // 3. Create a post with the caption and the image url in the 'database' using repository
 // 4. Return the post object
 
-import { createPost, findAllPosts, countAllPosts, deletePostByid, updatePostByid } from "../repositories/postRepository.js";
+import { createPost, findAllPosts, countAllPosts, deletePostByid, updatePostByid, findPostById } from "../repositories/postRepository.js";
 
 export const createPostService = async (createPostObject) => {
     const caption = createPostObject.caption?.trim();
@@ -30,7 +30,20 @@ export const getAllPostService = async (offset, limit) => {
 }
 
 
-export const deletePostByidService = async (id) => {
+export const deletePostByidService = async (id, user) => {
+    
+    const post = await findPostById(id);
+    
+    console.log("Post returned by findPostById: ", post.user.toString());
+    console.log("user from controller ", user);
+
+    if(post.user.toString() != user) {
+        throw {
+            status: 401,
+            message: "Unauthorized"
+        }
+    }
+    
     const response = await deletePostByid(id);
     return response;
 }

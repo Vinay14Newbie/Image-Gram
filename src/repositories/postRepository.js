@@ -5,11 +5,11 @@ import { s3 } from "../awsConfig.js"
 
 export const createPost = async (caption, image, user) => {
     try {
-        // const newPost = await Post.create({caption, image, user});
+        const newPost = await Post.create({caption, image, user});
 
         // another way
-        const newPost = new Post({caption, image, user});
-        await newPost.save();
+        // const newPost = new Post({caption, image, user});
+        // await newPost.save();
 
         return newPost;
     } catch (error) {
@@ -19,7 +19,8 @@ export const createPost = async (caption, image, user) => {
 
 export const findAllPosts = async (offset, limit) => {
     try{
-        const posts = await Post.find().sort({createdAt: -1}).skip(offset).limit(limit);
+        const posts = await Post.find().sort({createdAt: -1}).skip(offset).limit(limit).populate('user', '_id username email');
+        // populate(), which lets you reference documents in other collections.
         return posts;
     }
     catch(error){
