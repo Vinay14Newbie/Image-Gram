@@ -38,3 +38,17 @@ export async function isAuthenticated(req, res, next){
         })
     }
 }
+
+
+export async function isAdmin(req, res, next) {
+    console.log("isAdmin file: ", req.user);
+    
+    if(req.user.role != "admin"){
+        return res.status(403).json({
+            success: false,
+            message: "unauthorized"
+        })
+    }
+
+    next();
+}

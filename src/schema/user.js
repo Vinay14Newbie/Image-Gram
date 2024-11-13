@@ -20,6 +20,11 @@ const userSchema = new mongoose.Schema({
             message: "Invalid email format"
         }
     },
+    role: {  // so, this role will be either "user" or "admin" as a string
+        type: String, 
+        default: "user",
+        enum: ["user", "admin"]  // enum defines that this role property either have "user" or "admin" as a string no other string you can attach to this role
+    },
     password: {
         type: String, 
         required: true, 

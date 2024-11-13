@@ -43,7 +43,6 @@ export const signInUserService = async(userDetails) => {
         // 1. check if there is a valid registered with the email
         console.log('userDetails in Service layer: ', userDetails);
         const email = userDetails.email;
-        const palinPass = userDetails.password;
         
         const user = await findUserByEmail(email);
         if(!user){
@@ -62,8 +61,10 @@ export const signInUserService = async(userDetails) => {
                 message: "Invalid password"
             }
         }
+
+        console.log("Before generating jwt token in the signIn service, user.role: ", user.role);
         
-        const token = generateJwtToken({email: user.email, _id: user._id, username: user.username});
+        const token = generateJwtToken({email: user.email, _id: user._id, username: user.username, role: userDetails.role || "user"});
 
         console.log("service layer, jwt token: ", token);
         
