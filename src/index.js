@@ -33,6 +33,10 @@ app.get('/ping', /*express.json()*/ isAuthenticated, (req, res)=>{
 })
 
 
+api.get('/hello', (req, res) => {
+    return res.json({message: "hello there it's Render deployment"})
+})
+
 
 app.listen(PORT, ()=>{
     console.log(`Server is running on port ${PORT}`);
