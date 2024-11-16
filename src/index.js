@@ -33,7 +33,7 @@ app.get('/ping', /*express.json()*/ isAuthenticated, (req, res)=>{
 })
 
 
-api.get('/hello', (req, res) => {
+app.get('/hello', (req, res) => {
     return res.json({message: "hello there it's Render deployment"})
 })
 
