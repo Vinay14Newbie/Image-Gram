@@ -21,10 +21,16 @@ const commentSchema = new mongoose.Schema({
         required: true,
         refPath: "onModel"
     },
-    reply: [
+    replies: [
         {
             type: mongoose.Schema.Types.ObjectId,
             ref: "Comment"
+        }
+    ],
+    likes: [
+        {
+            type: mongoose.Schema.Types.ObjectId;
+            ref: "Like"
         }
     ]
 }, {timestamps: true})
@@ -32,3 +38,14 @@ const commentSchema = new mongoose.Schema({
 const Comment = mongoose.model("Comment", commentSchema);
 
 export default Comment;
+
+/**
+ * C1:
+ *  reply:[
+ *      C2
+ *      C3:
+ *        reply:[
+ *              C4
+ *              ] 
+ * ]
+ */

@@ -13,7 +13,19 @@ const postSchema = new mongoose.Schema({
     user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User"  // The ref option is what tells Mongoose which model to use during population
-    }
+    },
+    comments: [
+        {
+            type: mongoose.Schema.Types.ObjectId;
+            ref: "Comment"
+        }
+    ],
+    likes: [
+        {
+            type: mongoose.Schema.Types.ObjectId;
+            ref: "Like"
+        }
+    ]
 }, {timestamps: true});
 
 const Post = mongoose.model("Post", postSchema);   //it'll create a 'posts' collection in mongodb
