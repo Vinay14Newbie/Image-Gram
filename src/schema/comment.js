@@ -1,10 +1,10 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
 const commentSchema = new mongoose.Schema({
     content: {
         type: String,
         required: true,
-        minLength: 1,
+        minLength: 1
     },
     userId: {
         type: mongoose.Schema.Types.ObjectId,
@@ -16,7 +16,7 @@ const commentSchema = new mongoose.Schema({
         required: true,
         enum: ["Post", "Comment"]
     },
-    commentableid: {
+    commentableId: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
         refPath: "onModel"
@@ -29,11 +29,11 @@ const commentSchema = new mongoose.Schema({
     ],
     likes: [
         {
-            type: mongoose.Schema.Types.ObjectId;
+            type: mongoose.Schema.Types.ObjectId,
             ref: "Like"
         }
     ]
-}, {timestamps: true})
+});
 
 const Comment = mongoose.model("Comment", commentSchema);
 
@@ -41,11 +41,13 @@ export default Comment;
 
 /**
  * C1:
- *  reply:[
+ *  replies: [
  *      C2
- *      C3:
- *        reply:[
- *              C4
- *              ] 
- * ]
+ *      C3
+ *      C4: 
+ *          replies: [C5]
+ *      
+ *  ]
  */
+
+// Write an API to create comments on a post or another comment
