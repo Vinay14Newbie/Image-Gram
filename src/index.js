@@ -6,11 +6,18 @@ import { isAuthenticated } from './middlewares/authMiddleware.js';
 import swaggerUi from 'swagger-ui-express';
 import swaggerJSDoc from 'swagger-jsdoc';
 import {options} from './utils/swaggerOptions.js';
+import {rateLimit} from 'express-rate-limit'
 
 const PORT = 3000;
 
 const app = express();  // create express app server instance
 
+const limiter = rateLimit({
+    windowMs: 0.5 * 60 * 1000, // 30 seconds
+    max: 5  // limit each IP to 5 requests per windowMs
+})
+
+app.use(limiter);  // apply rate limiter to all requests
 
 // exporess.json() is a middleware which parse the json
 // use() helps us to add middleware to every single requests 
