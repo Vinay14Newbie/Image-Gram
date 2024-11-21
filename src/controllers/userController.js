@@ -80,16 +80,23 @@ export async function findAllUsers(req, res) {
 
 
 export async function signIn(req, res) {
-    console.log("Controller layer");
+    console.log("Controller layer signin");
     
     try {
         console.log("controller layer request body", req.body);
         
-        const respone = await signInUserService(req.body);
+        const token = await signInUserService(req.body);
+        console.log("controller layer: ", token); 
+        
+        res.cookie("access_token", token, { 
+            httpOnly: true, 
+            secure: false,
+            maxAge: 3600000  // Cookie expires in 1 hour 
+        })
         return  res.status(200).json({
             success: true,
             message: "user signed in successfully",
-            data: respone
+            data: token
         })
     } catch (error) {
         if(error.status){

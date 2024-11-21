@@ -7,10 +7,16 @@ import swaggerUi from 'swagger-ui-express';
 import swaggerJSDoc from 'swagger-jsdoc';
 import {options} from './utils/swaggerOptions.js';
 import {rateLimit} from 'express-rate-limit'
+import cookieParser from 'cookie-parser';
+import { authorizationViaCookies } from './middlewares/authViaCookies.js';
+
 
 const PORT = 3000;
 
 const app = express();  // create express app server instance
+
+app.use(cookieParser());
+
 
 const limiter = rateLimit({
     windowMs: 0.5 * 60 * 1000, // 30 seconds
@@ -32,7 +38,7 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 app.use('/api', apiRouter);   // If the url  starts with /api then the request is forwarded to the apiRouter
 
 
-app.get('/ping', /*express.json()*/ isAuthenticated, (req, res)=>{
+app.get('/ping', /*express.json()*/ /*isAuthenticated*/ authorizationViaCookies, (req, res)=>{
     console.log(req.body);
     console.log("index layer: ", req.user);
     
